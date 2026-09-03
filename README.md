@@ -49,7 +49,7 @@ pip3 install pikepdf
 Put `compress_tbe.py` in the same folder as your rulebook PDF, open a terminal in that
 folder, and run one of these:
 
-```
+```bash
 # just compress it
 python3 compress_tbe.py TBE_RPG_Core_Rulebook_v1.0.pdf
 
