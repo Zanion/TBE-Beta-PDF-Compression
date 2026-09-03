@@ -4,6 +4,11 @@ Shrinks the **beta** Broken Empires core rulebook PDF from about **726 MB to abo
 without losing searchable text. Optionally adds bookmarks and clickable links, which the
 beta PDF does not come with.
 
+Why it's so large: on 134 of the 667 pages, a black-and-white grain overlay sits over the
+page as live vector art rather than as an image. Those 134 pages carry 86% of the file.
+This script turns that overlay back into an image on those pages only, and leaves the
+other 533 pages completely untouched.
+
 > **Read this first**
 >
 > - This is an **unofficial, community-made** script. It is not from the publisher.

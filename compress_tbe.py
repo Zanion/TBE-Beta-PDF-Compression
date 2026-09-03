@@ -24,19 +24,22 @@ compress_tbe.py - shrink the Broken Empires core rulebook from ~726 MB to ~90 MB
           each other. Pass a second path to choose the name yourself.
 
 WHY THE FILE IS SO BIG
-    The book's paper texture seems to have been run through Illustrator's Image Trace,
-    so every page carries it as a mesh of tiny filled polygons instead of as a picture.
-    That is real vector data, so every ordinary PDF optimiser dutifully keeps all of it.
-    Only 24 MB of the 726 MB is images, and they are already low resolution, which is
-    why image downsampling does nothing during normal compression, and why a plain
-    Ghostscript pass can actually make the file bigger.
+    On 134 of the 667 pages, a black-and-white grain overlay sits over the page as live
+    vector art rather than as an image. It has the look of a bitmap texture run through
+    Image Trace. Those 134 pages carry 86% of the file.
+
+    That is real vector data, so every ordinary PDF optimiser dutifully keeps all of
+    it. Meanwhile only 24 MB of the original 726 MB is images. The parchment
+    background is a placed JPEG of about 46 KB, repeated on every page and they are
+    already low resolution. That is why image downsampling achieves nothing here, and
+    why a plain Ghostscript pass can actually make the file bigger.
 
 WHAT THIS DOES
-    For the 134 heaviest pages only:
+    For the 134 affected pages only:
       1. Ghostscript renders the page WITHOUT its text  ->  the artwork, as a JPEG
       2. the page's content stream is filtered down to only its text
       3. the page is rebuilt as that JPEG, with the original text drawn on top
-    The texture was a picture before it was traced, so turning it back into a picture
+    The grain overlay was a bitmap before it was traced, so turning it back into one
     costs essentially nothing visually. The text never passes through a rasteriser or a
     font re-encoder, so it stays sharp and searchable. The other 533 pages are left
     completely untouched, and ~102 MB of leftover InDesign metadata is also stripped.
